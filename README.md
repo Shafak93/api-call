@@ -1,4 +1,13 @@
-# Getting Started with Create React App
+# About API Call
+
+There are several system for calling API such as
+
+1. Using useEffect
+2. Using Axios
+3. Using React Query
+   Above them react query is very popular. I used here Suspense for Loading component.
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
