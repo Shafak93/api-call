@@ -1,32 +1,10 @@
 import React, { useEffect, useState } from "react";
-import Loading from "./Loading/Loading";
+import { useQuery } from "react-query";
+import Company from "./Company";
+import getData from "./Loading/getData";
 
 const Companies = () => {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(false);
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      const url = "http://demo2211087.mockable.io/mock";
-      try {
-        const res = await fetch(url, {
-          method: "POST",
-          headers: { "content-type": "application/json" },
-        });
-        const json = await res.json();
-        const companies = json.companies;
-        setLoading(false);
-        setData(companies);
-        console.log(json.companies);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchData();
-  }, [setData]);
-  if (loading == true) {
-    return <Loading />;
-  }
+  const { data } = useQuery("data", () => getData());
   return (
     <section className="antialiased bg-gray-100 text-gray-600 h-screen px-4">
       <div className="flex flex-col justify-center h-full">
@@ -54,29 +32,8 @@ const Companies = () => {
                   </tr>
                 </thead>
                 <tbody className="text-sm divide-y divide-gray-100">
-                  {data.map((compani) => (
-                    <tr>
-                      <td className="p-2 whitespace-nowrap">
-                        <div className="text-left">
-                          <input type="checkbox" />
-                        </div>
-                      </td>
-                      <td className="p-2 whitespace-nowrap">
-                        <div className="flex items-center">
-                          <div className="font-medium text-gray-800">
-                            {compani.name}
-                          </div>
-                        </div>
-                      </td>
-                      <td className="p-2 whitespace-nowrap">
-                        <div className="text-left">{compani.email}</div>
-                      </td>
-                      <td className="p-2 whitespace-nowrap">
-                        <div className="text-left font-medium text-green-500">
-                          {compani.status}
-                        </div>
-                      </td>
-                    </tr>
+                  {data.map((company) => (
+                    <Company company={company}></Company>
                   ))}
                 </tbody>
               </table>
