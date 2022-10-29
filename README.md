@@ -7,6 +7,8 @@ There are several system for calling API such as
 3. Using React Query
    Above them react query is very popular. I used here Suspense for Loading component.
 
+# Live Site : https://notary-app-3342e6.netlify.app/
+
 ## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
